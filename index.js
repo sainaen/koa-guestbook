@@ -7,6 +7,10 @@ var fs = require('fs');
 
 var app = koa();
 
+var render = views('views', {
+  ext: 'jade'
+});
+
 var file = './data/posts.json';
 var posts = require(file);
 
@@ -18,7 +22,7 @@ app.use(route.get('/', list));
 app.use(route.post('/posts', create));
 
 function* list() {
-  this.body = JSON.stringify(posts);
+  this.body = yield render('index', { posts: posts });
 }
 
 function* create() {
