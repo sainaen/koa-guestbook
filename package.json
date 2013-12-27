@@ -4,7 +4,8 @@
   "description": "Simple GuestBook on Koa.js",
   "main": "index.js",
   "dependencies": {
-    "koa": "~0.1.2"
+    "koa": "~0.1.2",
+    "koa-logger": "~1.1.0"
   },
   "devDependencies": {},
   "scripts": {
