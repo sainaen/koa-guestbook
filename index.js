@@ -1,11 +1,14 @@
 var logger = require('koa-logger');
 var parse = require('co-body');
 var route = require('koa-route');
+var views = require('co-views');
 var koa = require('koa');
+var fs = require('fs');
 
 var app = koa();
 
-var posts = [];
+var file = './data/posts.json';
+var posts = require(file);
 
 // logging
 app.use(logger());
@@ -24,7 +27,12 @@ function* create() {
   post.id = id;
   post.created_at = new Date();
 
+  save(posts);
   this.redirect('/');
+}
+
+function save(posts) {
+  fs.writeFile(file, JSON.stringify(posts), function ignore() {});
 }
 
 app.listen(3000);
