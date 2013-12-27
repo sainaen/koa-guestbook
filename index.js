@@ -11,8 +11,8 @@ var render = views('views', {
   ext: 'jade'
 });
 
-var file = './data/posts.json';
-var posts = require(file);
+var postsFile = './data/posts.json';
+var posts = require(postsFile);
 
 // logging
 app.use(logger());
@@ -37,7 +37,7 @@ function* create() {
 }
 
 function save(posts) {
-  fs.writeFile(file, JSON.stringify(posts), function ignore() {});
+  fs.writeFile(postsFile, JSON.stringify(posts), function ignore() {});
 }
 
 app.listen(3000);
