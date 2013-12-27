@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+	head
+		title My Awesome Guestbook
+	body
+		h1 Messages
+		form(method="POST", action="/posts")
+			input(type="text", name="message", placeholder="Your message")
+		- for (var i = posts.length - 1; i >= 0; i--)
+			li= posts[i].message
