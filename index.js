@@ -22,7 +22,7 @@ app.use(route.get('/', list));
 app.use(route.post('/posts', create));
 
 function* list() {
-  this.body = yield render('index', { posts: posts });
+  this.body = yield render('index', { posts: pager(posts) });
 }
 
 function* create() {
@@ -38,6 +38,11 @@ function* create() {
 
 function save(posts) {
   fs.writeFile(postsFile, JSON.stringify(posts), function ignore() {});
+}
+
+function pager(posts, count /*, padding ignored for now */) {
+  count = count || 20;
+  return posts.slice(-count).reverse();
 }
 
 app.listen(3000);
