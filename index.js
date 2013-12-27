@@ -27,11 +27,10 @@ function* list() {
 
 function* create() {
   var post = yield parse(this);
-  var id = posts.push(post) - 1;
-  post.id = id;
   post.created_at = new Date().getTime();
   post.author = "Anonymous";
 
+  posts.unshift(post);
   save(posts);
   this.redirect('/');
 }
@@ -40,9 +39,10 @@ function save(posts) {
   fs.writeFile(postsFile, JSON.stringify(posts), function ignore() {});
 }
 
-function pager(posts, count /*, padding ignored for now */) {
-  count = count || 20;
-  return posts.slice(-count).reverse();
+function pager(posts, count, padding) {
+  count = count || 3;
+  padding = padding || 0;
+  return posts.slice(padding, padding + count);
 }
 
 app.listen(3000);
