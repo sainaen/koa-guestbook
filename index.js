@@ -30,6 +30,7 @@ function* create() {
   var id = posts.push(post) - 1;
   post.id = id;
   post.created_at = new Date().getTime();
+  post.author = "Anonymous";
 
   save(posts);
   this.redirect('/');
