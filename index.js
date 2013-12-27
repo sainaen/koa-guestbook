@@ -29,7 +29,7 @@ function* create() {
   var post = yield parse(this);
   var id = posts.push(post) - 1;
   post.id = id;
-  post.created_at = new Date();
+  post.created_at = new Date().getTime();
 
   save(posts);
   this.redirect('/');
