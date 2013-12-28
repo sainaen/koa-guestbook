@@ -9,7 +9,7 @@ var dao = require('./dao');
 var app = koa();
 
 var render = views('views', {
-  ext: 'jade'
+	ext: 'jade'
 });
 
 // logging
@@ -20,17 +20,17 @@ app.use(route.get('/', list));
 app.use(route.post('/posts', create));
 
 function* list() {
-  var posts = yield dao.getPosts();
-  this.body = yield render('index', { posts: posts, moment: moment });
+	var posts = yield dao.getPosts();
+	this.body = yield render('index', { posts: posts, moment: moment });
 }
 
 function* create() {
-  var post = yield parse(this);
-  post.created_at = new Date().getTime();
-  post.author = "Anonymous";
+	var post = yield parse(this);
+	post.created_at = new Date().getTime();
+	post.author = "Anonymous";
 
-  yield dao.savePost(post);
-  this.redirect('/');
+	yield dao.savePost(post);
+	this.redirect('/');
 }
 
 app.listen(3000);
