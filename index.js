@@ -17,10 +17,11 @@ app.use(logger());
 
 // routing
 app.use(route.get('/', list));
+app.use(route.get('/page/:page', list));
 app.use(route.post('/posts', create));
 
-function* list() {
-	var posts = yield dao.getPosts();
+function* list(page) {
+	var posts = yield dao.getPosts(page);
 	this.body = yield render('index', { posts: posts, moment: moment });
 }
 

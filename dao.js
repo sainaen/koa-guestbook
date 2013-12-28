@@ -25,11 +25,10 @@ var savePosts = function (fname) {
 };
 
 var pager = function (num_at_page, page) {
-	num_at_page = num_at_page || 20;
-	page = page || 0;
-
+	var start = (page || 0) * (num_at_page || 20);
+	var end = start + num_at_page;
 	return function (list) {
-		return list.slice(page*num_at_page, num_at_page);
+		return list.slice(start, end);
 	};
 };
 
@@ -41,8 +40,8 @@ var appendPost = function (post) {
 };
 
 module.exports = {
-	getPosts: function () {
-		return loadJSON(postsFile).then(pager());
+	getPosts: function (page) {
+		return loadJSON(postsFile).then(pager(20, page));
 	},
 	savePost: function (post) {
 		return loadJSON(postsFile).then(appendPost(post)).then(savePosts(postsFile));
