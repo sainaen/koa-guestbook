@@ -10,7 +10,8 @@
     "co-body": "0.0.1",
     "co-views": "~0.1.0",
     "jade": "~1.0.0",
-    "moment": "~2.5.0"
+    "moment": "~2.5.0",
+    "q": "~0.9.7"
   },
   "devDependencies": {},
   "scripts": {
