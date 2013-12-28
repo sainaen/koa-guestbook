@@ -1,10 +1,17 @@
+include mixins/post
+
 doctype html
 html(lang="en")
 	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		title My Awesome Guestbook
 	body
 		h1 Messages
-		form(method="POST", action="/posts")
-			input(type="text", name="message", placeholder="Your message")
-		- each post in posts
-			li= post.message
+		form(class="add-post", method="POST", action="/posts")
+			textarea(name="message", class="message", placeholder="Your message")
+			input(name="author", class="author", placeholder="Author")
+			button.submit-post Submit
+		ul.posts
+			- each p in posts
+				li.posts-item: +post(p.author, p.created_at, p.message)

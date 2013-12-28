@@ -1,3 +1,4 @@
+var moment = require('moment');
 var logger = require('koa-logger');
 var parse = require('co-body');
 var route = require('koa-route');
@@ -22,7 +23,7 @@ app.use(route.get('/', list));
 app.use(route.post('/posts', create));
 
 function* list() {
-  this.body = yield render('index', { posts: pager(posts) });
+  this.body = yield render('index', { posts: pager(posts), moment: moment });
 }
 
 function* create() {

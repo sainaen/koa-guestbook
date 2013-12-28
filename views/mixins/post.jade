@@ -1,0 +1,16 @@
+include time
+
+mixin post(author, date, message)
+	article.post
+		header.header
+			h4
+				span.author= author
+				span.separator= " @ "
+				+time(date)(class="timestamp")
+		section.message
+			//- don't just print message
+			//- but add multiline support there
+			- each p in message.split("\r\n")
+				if (p.length > 0)
+					p= p
+
