@@ -24,11 +24,17 @@ var savePosts = function (fname) {
 	};
 };
 
-var pager = function (num_at_page, page) {
-	var start = (page || 0) * (num_at_page || 20);
-	var end = start + num_at_page;
+var pager = function (posts_at_page, page) {
+	var start = (page || 0) * (posts_at_page || 20);
+	var end = start + posts_at_page;
 	return function (list) {
 		return list.slice(start, end);
+	};
+};
+
+var countPosts = function (posts_at_page) {
+	return function (posts) {
+		return Math.ceil(posts.length / posts_at_page);
 	};
 };
 
@@ -40,6 +46,9 @@ var appendPost = function (post) {
 };
 
 module.exports = {
+	getNumberOfPages: function (posts_at_page) {
+		return loadJSON(postsFile).then(countPosts(posts_at_page));
+	},
 	getPosts: function (page) {
 		return loadJSON(postsFile).then(pager(20, page));
 	},

@@ -21,8 +21,19 @@ app.use(route.get('/page/:page', list));
 app.use(route.post('/posts', create));
 
 function* list(page) {
-	var posts = yield dao.getPosts(page);
-	this.body = yield render('index', { posts: posts, moment: moment });
+	var pages = yield dao.getNumberOfPages(20);
+	if (page && !(page > 0 && page <= pages)) {
+		this.throw(404);
+	} else {
+		page = page ? page - 1 : 0;
+		var posts = yield dao.getPosts(page, 20);
+
+		this.body = yield render('index', {
+			posts: posts,
+			pages: pages,
+			moment: moment
+		});
+	}
 }
 
 function* create() {
