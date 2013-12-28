@@ -28,7 +28,7 @@ function* list(page) {
 function* create() {
 	var post = yield parse(this);
 	post.created_at = new Date().getTime();
-	post.author = "Anonymous";
+	post.author = post.author || "Anonymous";
 
 	yield dao.savePost(post);
 	this.redirect('/');
