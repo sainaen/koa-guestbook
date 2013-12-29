@@ -27,8 +27,7 @@ function* list(page) {
 	if (page && !(page > 0 && page <= pages)) {
 		this.throw(404);
 	} else {
-		page = page ? page - 1 : 0;
-		var posts = yield dao.getPosts(config.posts_at_page, page);
+		var posts = yield dao.getPosts(config.posts_at_page, page || 0);
 
 		this.body = yield render('index', {
 			posts: posts,

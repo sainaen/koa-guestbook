@@ -26,7 +26,7 @@ var savePosts = function (fname) {
 };
 
 var pager = function (posts_at_page, page) {
-	var start = (page || 0) * posts_at_page;
+	var start = (page ? page - 1 : 0) * posts_at_page;
 	var end = start + posts_at_page;
 	return function (list) {
 		return list.slice(start, end);
