@@ -1,7 +1,8 @@
 var fs = require('fs');
 var Q = require('q');
+var config = require('./config.json');
 
-var postsFile = './data/posts.json';
+var posts_file = config.posts_file;
 
 var readFile = Q.denodeify(fs.readFile);
 var writeFile = Q.denodeify(fs.writeFile);
@@ -25,7 +26,7 @@ var savePosts = function (fname) {
 };
 
 var pager = function (posts_at_page, page) {
-	var start = (page || 0) * (posts_at_page || 20);
+	var start = (page || 0) * posts_at_page;
 	var end = start + posts_at_page;
 	return function (list) {
 		return list.slice(start, end);
@@ -47,12 +48,12 @@ var appendPost = function (post) {
 
 module.exports = {
 	getNumberOfPages: function (posts_at_page) {
-		return loadJSON(postsFile).then(countPosts(posts_at_page));
+		return loadJSON(posts_file).then(countPosts(posts_at_page));
 	},
-	getPosts: function (page) {
-		return loadJSON(postsFile).then(pager(20, page));
+	getPosts: function (posts_at_page, page) {
+		return loadJSON(posts_file).then(pager(posts_at_page, page));
 	},
 	savePost: function (post) {
-		return loadJSON(postsFile).then(appendPost(post)).then(savePosts(postsFile));
+		return loadJSON(posts_file).then(appendPost(post)).then(savePosts(posts_file));
 	}
 };

@@ -1,0 +1,6 @@
+{
+	"port": 3000,
+	"default_author": "Anonymous",
+	"posts_at_page": 20,
+	"posts_file": "./data/posts.json"
+}
