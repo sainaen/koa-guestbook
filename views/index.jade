@@ -7,11 +7,12 @@ html(lang="en")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		title My Awesome Guestbook
 	body
-		h1 Messages
-		form(class="add-post", method="POST", action="/posts")
-			textarea(name="message", class="message", placeholder="Your message")
-			input(name="author", class="author", placeholder="Author")
-			button.submit-post Submit
+		header
+			h1 Messages
+			form(class="add-post", method="POST", action="/")
+				textarea(name="message", class="message", placeholder="Your message")
+				input(name="author", class="author", placeholder="Author")
+				button.submit-post Submit
 		ul.posts
 			- each p in posts
 				li.posts-item: +post(p.author, p.created_at, p.message)

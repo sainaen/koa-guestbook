@@ -20,7 +20,7 @@ app.use(logger());
 // routing
 app.use(route.get('/', list));
 app.use(route.get('/page/:page', list));
-app.use(route.post('/posts', create));
+app.use(route.post('/', create));
 
 function* list(page) {
 	var pages = yield dao.getNumberOfPages(config.posts_at_page);
