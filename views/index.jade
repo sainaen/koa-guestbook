@@ -11,7 +11,7 @@ html(lang="en")
 			h1 Messages
 			form(class="add-post", method="POST", action="/")
 				textarea(name="message", class="message", placeholder="Your message")
-				input(name="author", class="author", placeholder="Author")
+				input(name="author", class="author", placeholder="Author", value=author)
 				button.submit-post Submit
 			menu.pages
 				- for (var i = 1; i <= pages; i++)

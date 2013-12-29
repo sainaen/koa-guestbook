@@ -32,6 +32,7 @@ function* list(page) {
 		this.body = yield render('index', {
 			posts: posts,
 			pages: pages,
+			author: this.cookies.get('author') || config.default_author,
 			moment: moment
 		});
 	}
@@ -43,6 +44,8 @@ function* create() {
 	post.author = post.author || config.default_author;
 
 	yield dao.savePost(post);
+
+	this.cookies.set('author', post.author);
 	this.redirect('/');
 }
 
