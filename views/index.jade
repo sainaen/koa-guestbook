@@ -13,6 +13,10 @@ html(lang="en")
 				textarea(name="message", class="message", placeholder="Your message")
 				input(name="author", class="author", placeholder="Author")
 				button.submit-post Submit
+			menu.pages
+				- for (var i = 1; i <= pages; i++)
+					- var link = "/page/" + i;
+					li.pages-item: a(class="page-link", href=link)= i
 		ul.posts
 			- each p in posts
 				li.posts-item: +post(p.author, p.created_at, p.message)
