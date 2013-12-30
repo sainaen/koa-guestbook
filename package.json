@@ -11,7 +11,8 @@
     "co-views": "~0.1.0",
     "jade": "~1.0.0",
     "moment": "~2.5.0",
-    "q": "~0.9.7"
+    "q": "~0.9.7",
+    "koa-static": "~1.4.0"
   },
   "devDependencies": {},
   "scripts": {

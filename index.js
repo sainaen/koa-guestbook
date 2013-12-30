@@ -1,5 +1,6 @@
 var moment = require('moment');
 var logger = require('koa-logger');
+var serve = require('koa-static');
 var parse = require('co-body');
 var route = require('koa-route');
 var views = require('co-views');
@@ -16,6 +17,9 @@ var render = views('views', {
 
 // logging
 app.use(logger());
+
+// static
+app.use(serve('public'));
 
 // routing
 app.use(route.get('/', list));
