@@ -44,6 +44,9 @@ function* list(page) {
 
 function* create() {
 	var post = yield parse(this);
+	if (post.message.trim().length === 0) {
+		this.throw(400, 'Please, provide a message');
+	}
 	post.created_at = new Date().getTime();
 	post.author = post.author || config.default_author;
 
