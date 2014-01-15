@@ -6,18 +6,30 @@ html(lang="en")
 		meta(charset="utf-8")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		title My Awesome Guestbook
+		link(rel="stylesheet", href="css/normalize.css")
+		link(rel="stylesheet", href="css/foundation.min.css")
 		link(rel="stylesheet", href="css/master.css")
 	body
-		header
-			h1 Messages
-			form(class="add-post", method="POST", action="/")
-				textarea(name="message", class="message", placeholder="Your message")
-				input(name="author", class="author", placeholder="Author", value=author)
-				button.submit-post Submit
-			menu.pages
-				- for (var i = 1; i <= pages; i++)
-					- var link = "/page/" + i;
-					li.pages-item: a(class="page-link", href=link)= i
-		ul.posts
-			- each p in posts
-				li.posts-item: +post(p.author, p.created_at, p.message)
+		div
+			header
+				div.row
+					div.large-4.large-centered.columns
+						h1.page-title Messages
+
+				form(class="add-post", method="POST", action="/")
+					div.row
+						div.large-8.large-offset-2.columns
+							textarea(name="message", class="message", placeholder="Your message")
+					div.row
+						div.large-4.large-offset-2.columns
+							input(name="author", type="text", class="author", placeholder="Author", value=author)
+						div.large-2.large-pull-2.columns
+							button.button.small.submit-post Submit
+				menu.row.pages
+					- for (var i = 1; i <= pages; i++)
+						- var link = "/page/" + i;
+						li.pages-item: a(class="page-link", href=link)= i
+			article.row
+				ul.posts
+					- each p in posts
+						li.posts-item.row: +post(p.author, p.created_at, p.message)
