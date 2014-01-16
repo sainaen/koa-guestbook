@@ -12,3 +12,17 @@
 	padding-top: 0.55rem;
 	padding-bottom: 0.5rem;
 }
+
+.posts {
+	list-style: none;
+}
+
+.posts-item + .posts-item {
+	margin-top: 0.4rem;
+}
+
+.timestamp {
+	color: hsl(0, 0%, 50%);
+	font-size: 0.9rem;
+	padding-left: 1rem;
+}

@@ -2,4 +2,4 @@ mixin time(time)
 	- var t = moment(time)
 	- var abs = t.format("HH:mm:ss UTC, DD/MM/YYYY")
 	- var rel = t.fromNow()
-	span(title=rel)= abs
+	span(title=rel, class="timestamp")= abs
