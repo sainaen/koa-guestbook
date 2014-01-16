@@ -31,10 +31,11 @@ function* list(page) {
 	if (page && !(page > 0 && page <= pages)) {
 		this.throw(404);
 	} else {
-		var posts = yield dao.getPosts(config.posts_at_page, page || 0);
+		var posts = yield dao.getPosts(config.posts_at_page, page || 1);
 
 		this.body = yield render('index', {
 			posts: posts,
+			current: page || 1,
 			pages: pages,
 			author: this.cookies.get('author') || config.default_author,
 			moment: moment

@@ -1,0 +1,5 @@
+mixin pagination(current, pages)
+	- for (var i = 1; i <= pages; i++)
+		- var className = "pages-item" + (i == current ? " current" : "");
+		- var link = "/page/" + i;
+		li(class=className): a(class="page-link", href=link)= i
