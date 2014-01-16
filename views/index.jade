@@ -20,10 +20,10 @@ html(lang="en")
 				form(class="add-post", method="POST", action="/")
 					div.row
 						div.large-8.large-offset-2.columns
-							textarea(name="message", class="message", placeholder="Your message")
+							textarea(name="message", class="message-input", placeholder="Your message")
 					div.row
 						div.large-4.large-offset-2.columns
-							input(name="author", type="text", class="author", placeholder="Author", value=author)
+							input(name="author", type="text", class="author-input", placeholder="Author", value=author)
 						div.large-2.large-pull-2.columns
 							button.button.radius.submit-post Submit
 				if (pages > 1)
