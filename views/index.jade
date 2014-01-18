@@ -26,13 +26,13 @@ html(lang="en")
 							input(name="author", type="text", class="author-input", placeholder="Author", value=author)
 						div.large-2.large-pull-2.columns
 							button.button.radius.submit-post Submit
-				if (pages > 1)
+				if (pages.length > 1)
 					div.row.pagination-centered
-						ul.pagination.pages: +pagination(current, pages)
+						ul.pagination.pages: +pagination(pages)
 			if (posts && posts.length > 0)
 				ul.posts
 					- each p in posts
 						li.posts-item.row: +post(p.author, p.created_at, p.message)
-			if (pages > 1)
+			if (pages.length > 1)
 				div.row.pagination-centered
-					ul.pagination.pages: +pagination(current, pages)
+					ul.pagination.pages: +pagination(pages)

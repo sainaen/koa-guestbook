@@ -1,5 +1,10 @@
-mixin pagination(current, pages)
-	- for (var i = 1; i <= pages; i++)
-		- var className = "pages-item" + (i == current ? " current" : "");
-		- var link = "/page/" + i;
-		li(class=className): a(class="page-link", href=link)= i
+mixin pagination(pages)
+	each p in pages
+		- var className = "pages-item"
+		if p.padding
+			- className += " unavailable";
+			li(class=className) &hellip;
+		else
+			- var link = "/page/" + p.id;
+			- if (p.current) className += " current";
+			li(class=className): a(class="page-link", href=link)= p.text

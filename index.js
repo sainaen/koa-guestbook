@@ -8,6 +8,7 @@ var koa = require('koa');
 
 var config = require('./config.json');
 var dao = require('./dao');
+var pager = require('./pager');
 
 var app = koa();
 
@@ -34,9 +35,8 @@ function* list(page) {
 		var posts = yield dao.getPosts(config.posts_at_page, page || 1);
 
 		this.body = yield render('index', {
+			pages: pager.paginate(page || 1, pages),
 			posts: posts,
-			current: page || 1,
-			pages: pages,
 			author: this.cookies.get('author') || config.default_author,
 			moment: moment
 		});
