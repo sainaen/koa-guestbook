@@ -37,7 +37,7 @@ function* list(page) {
 		this.body = yield render('index', {
 			pages: pager.paginate(page || 1, pages),
 			posts: posts,
-			author: this.cookies.get('author') || config.default_author,
+			author: decodeURIComponent(this.cookies.get('author')) || config.default_author,
 			moment: moment
 		});
 	}
@@ -53,7 +53,7 @@ function* create() {
 
 	yield dao.savePost(post);
 
-	this.cookies.set('author', post.author);
+	this.cookies.set('author', encodeURIComponent(post.author));
 	this.redirect('/');
 }
 
