@@ -33,11 +33,12 @@ function* list(page) {
 		this.throw(404);
 	} else {
 		var posts = yield dao.getPosts(config.posts_at_page, page || 1);
+		var author = this.cookies.get('author');
 
 		this.body = yield render('index', {
 			pages: pager.paginate(page || 1, pages),
 			posts: posts,
-			author: decodeURIComponent(this.cookies.get('author')) || config.default_author,
+			author: (author ? decodeURIComponent(author) : config.default_author),
 			moment: moment
 		});
 	}
