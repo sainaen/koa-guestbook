@@ -4,13 +4,13 @@
   "description": "Simple GuestBook on Koa.js",
   "main": "index.js",
   "dependencies": {
-    "koa": "~0.2.1",
+    "koa": "~0.3.0",
     "koa-route": "~1.0.2",
-    "koa-logger": "~1.1.0",
+    "koa-logger": "~1.1.1",
     "co-body": "0.0.1",
-    "co-views": "~0.1.0",
-    "jade": "~1.1.4",
-    "moment": "~2.5.0",
+    "co-views": "~0.2.0",
+    "jade": "~1.1.5",
+    "moment": "~2.5.1",
     "q": "~1.0.0",
     "koa-static": "~1.4.2"
   },
