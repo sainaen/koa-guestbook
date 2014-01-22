@@ -4,6 +4,7 @@ var serve = require('koa-static');
 var parse = require('co-body');
 var route = require('koa-route');
 var views = require('co-views');
+var etag = require('koa-etag');
 var koa = require('koa');
 
 var config = require('./config.json');
@@ -20,6 +21,7 @@ var render = views('views', {
 app.use(logger());
 
 // static
+app.use(etag());
 app.use(serve('public'));
 
 // routing
