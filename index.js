@@ -56,7 +56,7 @@ function* create() {
 
 	yield dao.savePost(post);
 
-	this.cookies.set('author', encodeURIComponent(post.author));
+	this.cookies.set('author', encodeURIComponent(author), { expires: moment().add('month', 1).toDate() });
 	this.redirect('/');
 }
 
