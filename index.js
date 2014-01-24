@@ -51,12 +51,12 @@ function* create() {
 	if (post.message.trim().length === 0) {
 		this.throw(400, 'Please, provide a message');
 	}
-	post.created_at = new Date().getTime();
+	post.created_at = Date.now();
 	post.author = post.author || config.default_author;
 
 	yield dao.savePost(post);
 
-	this.cookies.set('author', encodeURIComponent(author), { expires: moment().add('month', 1).toDate() });
+	this.cookies.set('author', encodeURIComponent(post.author), { expires: moment().add('month', 1).toDate() });
 	this.redirect('/');
 }
 
