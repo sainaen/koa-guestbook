@@ -7,6 +7,11 @@ mixin post(author, date, message)
 				span.author= author
 				+time(date)
 		section.message
-			- msg = message.replace(/(\r\n)\1{1,}/g, '\r\n\r\n');
-			p!= msg.replace(/\r\n/g, "<br>")
-
+			- each p in message.split(/(\r\n)\1{1,}/g)
+				- if (p.trim().length > 0)
+					- var lines = p.split(/\r\n/g);
+					p: - each line, i in lines
+						- if (line.length > 0)
+							= line
+						- if (lines.length > i + 1)
+							br
