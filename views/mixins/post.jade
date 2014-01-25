@@ -7,9 +7,6 @@ mixin post(author, date, message)
 				span.author= author
 				+time(date)
 		section.message
-			//- don't just print message
-			//- but add multiline support there
-			- each p in message.split("\r\n")
-				if (p.length > 0)
-					p= p
+			- msg = message.replace(/(\r\n)\1{1,}/g, '\r\n\r\n');
+			p!= msg.replace(/\r\n/g, "<br>")
 
