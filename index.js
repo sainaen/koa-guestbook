@@ -1,3 +1,4 @@
+var compress = require('koa-compress');
 var moment = require('moment');
 var logger = require('koa-logger');
 var serve = require('koa-static');
@@ -22,6 +23,7 @@ app.use(logger());
 
 // static
 app.use(etag());
+app.use(compress());
 app.use(serve('public'));
 
 // routing
